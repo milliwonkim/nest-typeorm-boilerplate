@@ -16,7 +16,6 @@ export class BooksController {
 
   @Post()
   async create(@Body() book: BookEntity): Promise<BookEntity> {
-    console.log('book', book);
     return await this.booksService.create(book);
   }
 
@@ -27,6 +26,7 @@ export class BooksController {
 
   @Get(':id')
   async findOne(@Param('id') id: string): Promise<BookEntity> {
+    // http://localhost:3000/books/3
     return this.booksService.findOne(+id);
   }
 

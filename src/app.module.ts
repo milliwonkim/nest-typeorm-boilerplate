@@ -6,7 +6,7 @@ import * as dotenv from 'dotenv';
 import { ConfigModule } from '@nestjs/config';
 
 dotenv.config();
-console.log(process.env);
+
 @Module({
   imports: [
     ConfigModule.forRoot({
@@ -26,6 +26,13 @@ console.log(process.env);
        * type: 사용할 데이터베이스 종류를 지정합니다. 이 경우 mysql을 사용합니다.
        */
       type: 'mysql',
+      /**
+       * 로컬에서는 127.0.0.1로 해야함
+       * localhost로 하면 다음과 같은 에러가 뜸
+       * ERROR [ExceptionHandler] connect ECONNREFUSED ::1:3306
+          Error: connect ECONNREFUSED ::1:3306
+          at TCPConnectWrap.afterConnect [as oncomplete] (node:net:1494:16)
+       */
       host: process.env.HOST,
       port: 3306,
       username: process.env.USERNAME,
@@ -47,7 +54,7 @@ console.log(process.env);
        *
        * 개발모드에서만 사용해야합니다.
        */
-      synchronize: process.env.NODE_ENV === 'development',
+      synchronize: false,
     }),
     BooksModule,
   ],
