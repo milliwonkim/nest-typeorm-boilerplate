@@ -40,7 +40,7 @@ dotenv.config();
       /**
        * database: 사용할 데이터베이스 이름을 지정합니다.
        */
-      database: process.env.DATABASE,
+      database: process.env.SCHEMA,
       /**
        * entities: 사용할 엔티티 클래스를 지정합니다. 이 경우 BookEntity를 사용합니다.
        */

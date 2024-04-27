@@ -11,7 +11,7 @@ import {
  * schema - mysql 데이터베이스이름
  * name - 테이블 이름
  */
-@Entity({ schema: process.env.DATABASE, name: 'books' })
+@Entity({ schema: process.env.SCHEMA, name: 'book-table' })
 export class BookEntity {
   @PrimaryGeneratedColumn({ type: 'int', name: 'id' })
   id: number;

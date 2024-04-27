@@ -2,6 +2,9 @@ import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { BookEntity } from './entities/book.entity';
 import { Repository } from 'typeorm';
+import { CreateBookDto } from './dto/create-book.dto';
+import { UpdateBookDto } from './dto/update-book.dto';
+import { BooksDto } from './dto/books.dto';
 
 @Injectable()
 export class BooksService {
@@ -19,7 +22,7 @@ export class BooksService {
     private booksRepository: Repository<BookEntity>,
   ) {}
 
-  async create(book: BookEntity): Promise<BookEntity> {
+  async create(book: CreateBookDto): Promise<BooksDto> {
     /**
      * create 메소드는 새로운 BookEntity 인스턴스를 메모리 상에서 생성하며,
      * 주어진 객체(book)의 데이터를 사용하여 이 인스턴스를 초기화합니다.
@@ -51,7 +54,7 @@ export class BooksService {
     });
   }
 
-  async update(id: number, book: BookEntity): Promise<number> {
+  async update(id: number, book: UpdateBookDto): Promise<number> {
     await this.booksRepository.update(id, book);
     return id;
   }
